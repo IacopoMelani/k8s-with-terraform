@@ -10,6 +10,8 @@ module "mario_rossi" {
   app_name     = "Mario Rossi"
   namespace    = "mario-rossi"
   domain       = "mrossi"
+
+  nfs_server = var.nfs_server_1
 }
 
 module "marco_verdi" {
@@ -24,6 +26,9 @@ module "marco_verdi" {
   app_name     = "Marco Verdi"
   namespace    = "marco-verdi"
   domain       = "mverdi"
+
+
+  nfs_server = var.nfs_server_1
 }
 
 module "sandro_bianchi" {
@@ -38,4 +43,6 @@ module "sandro_bianchi" {
   app_name     = "Sandro Bianchi"
   namespace    = "sandro-bianchi"
   domain       = "sbianchi"
+
+  nfs_server = var.nfs_server_1
 }

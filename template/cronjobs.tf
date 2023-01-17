@@ -27,7 +27,7 @@ resource "kubernetes_job_v1" "init-pv" {
         volume {
           name = "init-pv"
           nfs {
-            server = "192.168.0.181"
+            server = var.nfs_server
             path   = "/"
           }
         }
@@ -68,7 +68,7 @@ resource "kubernetes_persistent_volume_v1" "pv" {
     access_modes = ["ReadWriteMany"]
     persistent_volume_source {
       nfs {
-        server = "192.168.0.181"
+        server = var.nfs_server
         path   = "/${var.namespace}"
       }
     }
@@ -152,7 +152,7 @@ resource "kubernetes_cron_job_v1" "hello" {
               image             = "busybox:1.28"
               image_pull_policy = "IfNotPresent"
               command           = ["/bin/sh", "-c"]
-              args              = ["date; mkdir -p /app/logs; echo 'Cron Job from ${var.app_name} app' > /app/logs/hello.logs"]
+              args              = ["date; mkdir -p /app/logs; echo \"[$(date)] Cron Job from ${var.app_name} app\" >> /app/logs/hello.logs"]
               volume_mount {
                 name       = "hello-storage"
                 mount_path = "/app"
