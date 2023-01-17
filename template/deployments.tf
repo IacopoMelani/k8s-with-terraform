@@ -5,8 +5,8 @@ resource "kubernetes_deployment_v1" "redis-deployment" {
   ]
 
   metadata {
-    name = "redis"
-    labels = local.redis_deployment_labels
+    name      = "redis"
+    labels    = local.redis_deployment_labels
     namespace = var.namespace
   }
 
@@ -20,7 +20,7 @@ resource "kubernetes_deployment_v1" "redis-deployment" {
 
     template {
       metadata {
-        name = "redis"
+        name   = "redis"
         labels = local.redis_pod_labels
       }
 
@@ -42,8 +42,8 @@ resource "kubernetes_deployment_v1" "app-deployment" {
   ]
 
   metadata {
-    name = "app"
-    labels = local.app_deployment_labels
+    name      = "app"
+    labels    = local.app_deployment_labels
     namespace = var.namespace
   }
 
@@ -56,7 +56,7 @@ resource "kubernetes_deployment_v1" "app-deployment" {
 
     template {
       metadata {
-        name = "app"
+        name   = "app"
         labels = local.app_pod_labels
       }
 
@@ -96,10 +96,7 @@ resource "kubernetes_deployment_v1" "app-sample-deployment" {
 
   metadata {
     name = "app-sample"
-    labels = {
-      "name" = "app-sample"
-      "kind" = "deployment"
-    }
+    labels = local.app_sample_deployment_labels
     namespace = var.namespace
   }
 
@@ -110,7 +107,7 @@ resource "kubernetes_deployment_v1" "app-sample-deployment" {
 
     template {
       metadata {
-        name = "app-sample"
+        name   = "app-sample"
         labels = local.app_sample_pod_labels
       }
 
