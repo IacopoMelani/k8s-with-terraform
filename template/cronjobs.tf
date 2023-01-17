@@ -19,7 +19,7 @@ resource "kubernetes_cron_job_v1" "hello" {
     job_template {
 
       metadata {
-        name = "hello"
+        name   = "hello"
         labels = local.hello_job_labels
       }
 
@@ -28,7 +28,7 @@ resource "kubernetes_cron_job_v1" "hello" {
         template {
 
           metadata {
-            name = "hello"
+            name   = "hello"
             labels = local.hello_pod_labels
           }
 
