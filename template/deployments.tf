@@ -38,7 +38,7 @@ resource "kubernetes_deployment_v1" "app-deployment" {
 
   depends_on = [
     kubernetes_namespace_v1.namespace,
-    kubernetes_config_map_v1.app-config
+    kubernetes_config_map_v1.app-config,
   ]
 
   metadata {
@@ -95,8 +95,8 @@ resource "kubernetes_deployment_v1" "app-sample-deployment" {
   ]
 
   metadata {
-    name = "app-sample"
-    labels = local.app_sample_deployment_labels
+    name      = "app-sample"
+    labels    = local.app_sample_deployment_labels
     namespace = var.namespace
   }
 

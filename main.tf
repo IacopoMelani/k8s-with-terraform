@@ -1,3 +1,4 @@
+
 module "mario_rossi" {
 
   source = "./template"
@@ -6,12 +7,9 @@ module "mario_rossi" {
     kubernetes = kubernetes.minikube
   }
 
-  app_replicas = 1
-  app_name     = "Mario Rossi"
-  namespace    = "mario-rossi"
-  domain       = "mrossi"
-
-  nfs_server = var.nfs_server_1
+  app_name  = "Mario Rossi"
+  namespace = "mario-rossi"
+  domain    = "mrossi"
 }
 
 module "marco_verdi" {
@@ -22,13 +20,9 @@ module "marco_verdi" {
     kubernetes = kubernetes.minikube
   }
 
-  app_replicas = 1
-  app_name     = "Marco Verdi"
-  namespace    = "marco-verdi"
-  domain       = "mverdi"
-
-
-  nfs_server = var.nfs_server_1
+  app_name  = "Marco Verdi"
+  namespace = "marco-verdi"
+  domain    = "mverdi"
 }
 
 module "sandro_bianchi" {
@@ -39,10 +33,7 @@ module "sandro_bianchi" {
     kubernetes = kubernetes.minikube
   }
 
-  app_replicas = 1
-  app_name     = "Sandro Bianchi"
-  namespace    = "sandro-bianchi"
-  domain       = "sbianchi"
-
-  nfs_server = var.nfs_server_1
+  app_name  = "Sandro Bianchi"
+  namespace = "sandro-bianchi"
+  domain    = "sbianchi"
 }

@@ -3,7 +3,7 @@ resource "kubernetes_cron_job_v1" "hello" {
 
   depends_on = [
     kubernetes_namespace_v1.namespace,
-    kubernetes_persistent_volume_claim_v1.pvc,
+    kubernetes_persistent_volume_claim_v1.hello-logs-pvc,
   ]
 
   metadata {
@@ -37,9 +37,9 @@ resource "kubernetes_cron_job_v1" "hello" {
 
             restart_policy = "OnFailure"
             volume {
-              name = "hello-storage"
+              name = "hello-logs-volume"
               persistent_volume_claim {
-                claim_name = var.namespace
+                claim_name = "hello-logs"
               }
             }
             container {
@@ -47,10 +47,10 @@ resource "kubernetes_cron_job_v1" "hello" {
               image             = "busybox:1.28"
               image_pull_policy = "IfNotPresent"
               command           = ["/bin/sh", "-c"]
-              args              = ["date; mkdir -p /app/logs; echo \"[$(date)] Cron Job from ${var.app_name} app\" >> /app/logs/hello.logs"]
+              args              = ["date; echo \"[$(date)] Cron Job from ${var.app_name} app\" >> /app/logs/hello.logs"]
               volume_mount {
-                name       = "hello-storage"
-                mount_path = "/app"
+                name       = "hello-logs-volume"
+                mount_path = "/app/logs"
               }
             }
           }
