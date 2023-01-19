@@ -1,7 +1,8 @@
 resource "kubernetes_deployment_v1" "redis-deployment" {
 
   depends_on = [
-    kubernetes_namespace_v1.namespace
+    kubernetes_namespace_v1.namespace,
+    kubernetes_persistent_volume_claim_v1.redis-pvc,
   ]
 
   metadata {
@@ -25,9 +26,21 @@ resource "kubernetes_deployment_v1" "redis-deployment" {
       }
 
       spec {
+
+        volume {
+          name = "redis-volume"
+          persistent_volume_claim {
+            claim_name = "redis"
+          }
+        }
+
         container {
           image = "redis"
           name  = "redis"
+          volume_mount {
+            name = "redis-volume"
+            mount_path = "/data"
+          }
         }
       }
     }

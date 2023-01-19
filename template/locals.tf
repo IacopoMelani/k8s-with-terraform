@@ -20,6 +20,10 @@ locals {
     "name" = "redis"
     "kind" = "service"
   }
+  redis_pvc_labels = {
+    "name" = "redis"
+    "kind" = "pvc"
+  }
 
   # App 
 
@@ -66,5 +70,9 @@ locals {
   hello_pod_labels = {
     "name" = "hello"
     "kind" = "pod"
+  }
+  hello_logs_pvc_labels = {
+    "name" = "hello-logs"
+    "kind" = "pvc"
   }
 }
