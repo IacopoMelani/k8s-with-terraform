@@ -38,7 +38,7 @@ resource "kubernetes_deployment_v1" "redis-deployment" {
           image = "redis"
           name  = "redis"
           volume_mount {
-            name = "redis-volume"
+            name       = "redis-volume"
             mount_path = "/data"
           }
         }
