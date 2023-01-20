@@ -11,7 +11,7 @@ resource "helm_release" "nfs-provisioner-1" {
 
   set {
     name  = "nfs.path"
-    value = "/"
+    value = "/apps"
   }
 
   set {
